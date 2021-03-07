@@ -37,6 +37,7 @@
     "eject": "react-scripts eject",
     "node-serve": "./node_modules/.bin/tsc-watch -p tsconfig.server.json --onSuccess \"node dist-server/src/server/server.js"
   },
+  "proxy": "http://localhost:3002",
   "eslintConfig": {
     "extends": [
       "react-app",
