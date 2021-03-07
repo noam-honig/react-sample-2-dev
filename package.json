@@ -3,18 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@remult/core": "^2.1.22",
+    "@remult/server": "^2.1.22",
+    "@remult/server-postgres": "^2.1.22",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@types/express": "^4.17.11",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
+    "@types/pg": "^7.14.10",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.7",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "express-force-https": "^1.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.5.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "reflect-metadata": "^0.1.13",
+    "tsc-watch": "^4.2.9",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
@@ -22,7 +34,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "node-serve": "./node_modules/.bin/tsc-watch -p tsconfig.server.json --onSuccess \"node dist-server/src/server/server.js"
   },
   "eslintConfig": {
     "extends": [
