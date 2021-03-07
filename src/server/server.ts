@@ -6,6 +6,8 @@ import { Pool } from 'pg';
 import { config } from 'dotenv';
 import { PostgresDataProvider, PostgresSchemaBuilder } from '@remult/server-postgres';
 
+import '../tasks/tasks';
+
 
 config(); //loads the configuration from the .env file
 initDatabase().then(database => { 
