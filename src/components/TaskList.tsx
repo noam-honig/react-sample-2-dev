@@ -1,36 +1,38 @@
 import { Component } from "react";
 import { Tasks } from "../tasks/tasks";
 import { context } from '../common';
+import React from "react";
 
-class TaskList extends Component {
-    tasks: Tasks[] = [];
-    async loadTasks() {
-        this.tasks = await context.for(Tasks).find();
-        this.setState({});
-    }
-    componentDidMount() {
-        this.loadTasks();
-    }
-    async addTask() {
-        let t = context.for(Tasks).create();
-        t.name.value = this.newTaskName;
-        await t.save();
-        this.newTaskName = '';
-        this.loadTasks();
-    }
-    newTaskName: string = '';
 
-    render() {
-        return <div>
-            <h3>Tasks</h3>
-            <input value={this.newTaskName} onChange={x => { this.newTaskName = x.target.value; this.setState({}) }}></input>
-            <button onClick={() => this.addTask()}>Add Task</button>
-            <ul>
-                {this.tasks.map(t => (
-                    <li key={t.id.value}>{t.name.value}
-                    </li>))}
-            </ul>
-        </div>
-    }
+
+function TaskList() {
+    let [task, setTask] = React.useState(() => context.for(Tasks).create());
+
+
+
+    return <div>
+        <h1>Task List</h1>
+        <ul>
+            <TaskInList t={task}></TaskInList>
+        </ul>
+    </div>
 }
 export default TaskList;
+
+
+export function TaskInList(props: { t: Tasks }) {
+    let [taskName, setTaskName] =
+        React.useReducer((x:any, y:any) => {
+            props.t.name.inputValue = x;
+            
+            return x;
+        }, props.t.name.value)
+    // React.useState(props.t.name.inputValue);
+
+    return <li >
+
+        <input value={taskName} onChange={x => {
+            setTaskName(props.t.name.inputValue);
+        }} />{props.t.name.inputValue}
+    </li>
+}
